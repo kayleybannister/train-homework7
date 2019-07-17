@@ -20,7 +20,7 @@ var firebaseConfig = {
     var trainObject = {
         trainName: $("#train-input").val().trim(),
         destination: $("#destination-input").val().trim(),
-        trainTime: $("#train-time-input").val().trim(),
+        trainTime: moment($("#train-time-input").val().trim()).format('HH:mm'),
         frequency: moment($("#frequency-input").val().trim()).format('HH:mm')
     };
 
@@ -37,10 +37,13 @@ var firebaseConfig = {
 
     var trainName = childSnapshot.val().trainName;
     var destination = childSnapshot.val().destination;
-    var trainTime = childSnapshot.val().trainTime;
-    var frequency = childSnapshot.val().frequency;
+    var trainTime = moment(childSnapshot.val().trainTime).format('HH:mm');
+    var frequency = moment(childSnapshot.val().frequency).format('HH:mm');
     var arrival = trainTime - frequency;
     var minutesAway = arrival - trainTime;
+
+    console.log(arrival);
+    console.log(minutesAway);
 
     $("#train-name").text(trainName);
     $("#destination").text(destination);
