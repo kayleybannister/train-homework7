@@ -39,8 +39,8 @@ var firebaseConfig = {
     var destination = childSnapshot.val().destination;
     var trainTime = childSnapshot.val().trainTime;
     var frequency = childSnapshot.val().frequency;
-    var arrival = trainTime - frequency;
-    var minutesAway = arrival - trainTime;
+    var arrival = moment(trainTime - frequency).format("HH:mm");
+    var minutesAway = moment(arrival - trainTime).format("mm");
 
     console.log(arrival);
     console.log(minutesAway);
