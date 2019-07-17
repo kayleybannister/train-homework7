@@ -13,21 +13,16 @@ var firebaseConfig = {
 
   var database = firebase.database();
 
-  var trainName = $("#train-input").val().trim();
-  var destination = $("#destination-input").val().trim();
-  var trainTime = $("#train-time-input").val().trim();
-  var frequency = $("#frequency-input").val().trim();
-
-  //creating object so that these can be pushed to the database?
-  var trainObject = {
-      trainName: trainName,
-      destination: destination,
-      trainTime: trainTime,
-      frequency: frequency
-    }
-
   $("#submit-button").on("click", function(event){
       event.preventDefault();
+
+    //creating object so that these can be pushed to the database?
+    var trainObject = {
+    trainName: $("#train-input").val().trim(),
+    destination: $("#destination-input").val().trim(),
+    trainTime: $("#train-time-input").val().trim(),
+    frequency: $("#frequency-input").val().trim()
+    };
 
     //testing to make sure the JS reads the user inputs
     console.log("Submit Button has been Clicked");
@@ -36,4 +31,9 @@ var firebaseConfig = {
     //the below should push these to the database
     database.ref().push(trainObject);
 
-  })
+    database.ref().set(trainObject);
+
+  });
+
+  $("<tr>").append("#train-name");
+
