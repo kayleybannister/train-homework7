@@ -13,6 +13,13 @@ var firebaseConfig = {
 
   var database = firebase.database();
 
+  var trainName;
+  var destination;
+  var trainTime;
+  var frequency;
+  var nextArrival;
+  var minutesAway;
+
   $("#submit-button").on("click", function(event){
       event.preventDefault();
 
@@ -32,8 +39,7 @@ var firebaseConfig = {
     database.ref().push(trainObject);
 
     database.ref().set(trainObject);
-
   });
 
-  $("<tr>").append("#train-name");
+  
 
