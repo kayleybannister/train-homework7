@@ -20,8 +20,8 @@ var firebaseConfig = {
     var trainObject = {
         trainName: $("#train-input").val().trim(),
         destination: $("#destination-input").val().trim(),
-        trainTime: moment($("#train-time-input").val().trim()).format('HH:mm'),
-        frequency: moment($("#frequency-input").val().trim()).format('HH:mm')
+        trainTime: moment($("#train-time-input").val().trim(), "HH:mm").format("HH:mm"),
+        frequency: $("#frequency-input").val().trim()
     };
 
     //testing to make sure the JS reads the user inputs
@@ -37,8 +37,8 @@ var firebaseConfig = {
 
     var trainName = childSnapshot.val().trainName;
     var destination = childSnapshot.val().destination;
-    var trainTime = moment(childSnapshot.val().trainTime).format('HH:mm');
-    var frequency = moment(childSnapshot.val().frequency).format('HH:mm');
+    var trainTime = childSnapshot.val().trainTime;
+    var frequency = childSnapshot.val().frequency;
     var arrival = trainTime - frequency;
     var minutesAway = arrival - trainTime;
 
@@ -47,7 +47,7 @@ var firebaseConfig = {
 
     $("#train-name").text(trainName);
     $("#destination").text(destination);
-    $("#train-time").text(trainTime);
+    $("#frequency").text(frequency);
     $("#arrival").text(arrival);
     $("#minutes").text(minutesAway);
 
